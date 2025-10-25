@@ -293,13 +293,13 @@ class Team:
             embed.add_field(
                 name=_("👥 Membership:"),
                 value=_(
-                    "- **Total Members:** {member_count}\n" "- **Captain:** {captain.mention}"
+                    "- **Manager:** {captain.mention}"
                 ).format(
                     member_count=len(self.members),
                     captain=self.captain,
                 )
                 + (
-                    _("\n- **Vice-Captain{s}:** {vice_captains}").format(
+                    _("\n- **Co-Manager{s}:** {vice_captains}").format(
                         vice_captains=humanize_list(
                             [vice_captain.mention for vice_captain in self.vice_captains]
                         ),
@@ -310,11 +310,9 @@ class Team:
                 ),
             )
             embed.add_field(
-                name=_("🏆 Points:"),
+                name=_("🏆 Accolades:"),
                 value=_(
-                    "- **Total Points:** {total_points}\n"
-                    "- **Contributions:** {contributions}\n"
-                    "- **Contributors:** {contributors}"
+                    "- **Tourney Trophies:** {total_points}"
                 ).format(
                     total_points=sum(point.amount for point in self.points),
                     contributions=len(self.points),

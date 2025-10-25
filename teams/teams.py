@@ -114,7 +114,7 @@ class Teams(Cog):
         if any(captain in team.members for team in self.teams.get(ctx.guild.id, {}).values()):
             raise commands.UserFeedbackCheckFailure(
                 _(
-                    "A team with this member already exists. Please remove them from the existing team first."
+                    "A team with this member already exists. Please remove them from their current team first."
                 )
             )
         roles = {}
@@ -398,7 +398,7 @@ class Teams(Cog):
             raise commands.UserFeedbackCheckFailure(str(e))
         await ctx.send(
             _(
-                "✅ Member {member.mention} promoted successfully to Vice-Captain in **{team.display_name}** team!"
+                "✅ Member {member.mention} promoted to co-manager for **{team.display_name}**!"
             ).format(member=member, team=team)
         )
 
@@ -499,7 +499,7 @@ class Teams(Cog):
         embed: discord.Embed = discord.Embed(
             title=_("Teams:"),
             description="\n".join(
-                _("- **{display_name}** (Captain: {captain}) — **{count}** Member{s}").format(
+                _("- **{display_name}** | Manager: {captain}").format(
                     display_name=team.display_name,
                     captain=f"<@{team.captain_id}>",
                     count=len(team.members),
